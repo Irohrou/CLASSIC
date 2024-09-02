@@ -1,0 +1,317 @@
+* {
+    margin: 0;
+    padding: 0;
+ }
+
+
+ /* Hamburger Menu */
+.hamburger-menu {
+    position: absolute;
+    top: 100px;
+    right: 100px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 40px;
+}
+
+.hamburger-menu .line {
+    width: 40px;
+    height: 5px;
+    background-color: white;
+}
+
+/* Overlay background */
+.overlay {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.5s ease;
+    z-index: 1000;
+    backdrop-filter: blur(10px); /* Blur the background content */
+}
+
+.overlay-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.overlay-content a {
+    text-decoration: none;
+    color: #f2ddbc;
+    font-size: 2rem;
+    margin: 20px 0;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Show overlay */
+.overlay.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Animate the links */
+.overlay.show .overlay-content a {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered animation for links */
+.overlay.show .overlay-content a:nth-child(1) {
+    transition-delay: 0.1s;
+}
+
+.overlay.show .overlay-content a:nth-child(2) {
+    transition-delay: 0.2s;
+}
+
+.overlay.show .overlay-content a:nth-child(3) {
+    transition-delay: 0.3s;
+}
+
+.overlay.show .overlay-content a:nth-child(4) {
+    transition-delay: 0.4s;
+}
+
+.overlay.show .overlay-content a:nth-child(5) {
+    transition-delay: 0.5s;
+}
+
+/* Hamburger menu lines transition */
+.hamburger-menu .line {
+    background-color: white;
+    transition: transform 0.5s ease, background-color 0.5s ease;
+}
+
+/* Animate the hamburger into an X */
+.hamburger-menu.open .line:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger-menu.open .line:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-menu.open .line:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Floating instruction message */
+#close-instruction {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #f2ddbc;
+    font-size: 1rem;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    z-index: 1001; /* Ensure it appears above the overlay */
+}
+
+/* Show instruction when overlay is active */
+.overlay.show #close-instruction {
+    opacity: 1;
+}
+
+
+
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+#main-banner {
+    height: 100vh;
+    background-color: #333;
+    color: white;
+    padding: 50px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: initial;
+    align-items: center;
+    gap: 60px; /* Add gap between social icons and text/button container */
+    overflow: hidden;
+}
+
+.social-media {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.social-media a {
+    margin-bottom: 10px;
+}
+
+.social-media img {
+    color: #F2DDBC;
+    border: 2px solid #17A3DE;
+    padding: 6px;
+    border-radius: 50%;/* Perfectly circular */
+    width: 40px;
+    height: 40px;
+}
+
+.content h5 {
+    font-size: clamp(.9rem, 2vw, 1rem); /* Responsive font size */
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #18A9DF;
+    margin-bottom: 40px;
+}
+
+.content h1 {
+    font-size: clamp(4rem, 4vw, 3rem); /* Responsive font size */
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.content .highlight {
+    color: #F2DDBC;
+}
+
+.button {
+    display: inline-block;
+    padding: 18px 28px; /* Increased padding for larger button */
+    font-size: 1.1rem;  /* Increased font size */
+    background-color: #064789;
+    color: #EBF2FA;
+    text-decoration: none;
+    margin-top: 60px;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #e2c5a8;
+    transform: translateY(-3px);
+}
+
+/* Laptop screens up to 1366px */
+@media only screen and (max-width: 1366px) {
+    #main-banner {
+        height: 100vh;
+    }
+
+    .hamburger-menu {
+        position: absolute;
+        top: 60px; /* Move closer to the top */
+        right: 60px; /* Move closer to the right */
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 35px; /* Enlarged size */
+    }
+    
+    .social-media img {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .content h2 {
+        font-size: .9rem;
+    }
+    
+    .content h1 {
+        font-size: 3.5rem;
+    }
+}
+
+/* Mobile Portrait up to 767px */
+@media only screen and (max-width: 767px) {
+    
+    .hamburger-menu {
+        position: absolute;
+        top: 30px; /* Move closer to the top */
+        right: 30px; /* Move closer to the right */
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 35px; /* Enlarged size */
+    }
+
+    .hamburger-menu .line {
+        width: 40px;
+        height: 5px;
+        background-color: white;
+    }
+    
+    .container {
+        flex-direction: column; /* Stack contents vertically */
+        align-items: flex-start; /* Align items to the start */
+    }
+
+    .content {
+        order: 2; /* Content comes before social media icons */
+        text-align: left; /* Center the text for better readability */
+    }
+    
+    .social-media {
+        order: 3; /* Social media icons are last */
+        flex-direction: row;
+        justify-content: start;
+        margin-top: auto;
+        width: 100%; /* Ensure icons span across the bottom */
+    }
+    
+    .social-media img {
+        width: 25px;
+        height: 25px;
+        margin: 0 5px;
+    }
+    
+    .content h2 {
+        font-size: 1rem;
+        margin-bottom: 10px;
+    }
+    
+    .content h1 {
+        font-size: 2.3rem;
+    }
+
+    .button {
+        padding: 20px 35px; /* Larger button */
+        font-size: 1.2rem;  /* Larger label */
+        margin-top: 40px; /* Adjust button margin */
+    }
+    
+    #main-banner {
+        padding: 20px; /* Adjust padding to prevent overflow */
+    }
+    
+    .container {
+        width: 100%;
+        justify-content: flex-start;
+    }
+}
+
+/* Smooth Transition */
+* {
+    transition: all 0.3s ease-in-out;
+}
